@@ -1,0 +1,110 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models = "clr-namespace:hosrital_.Models"
+        mc:Ignorable="d" Width="800" Height="480" 
+        x:Class="hosrital_.MainWindow"
+        Title="hosrital_">
+    <TabControl>
+        <TabItem Header="Запись на прием" FontSize="17">
+            <Panel Margin="0,-70,0,0">
+                <DataGrid x:Name = "GroupsDataGrid"
+                          AutoGenerateColumns="False"        
+                          IsReadOnly="True"
+                          GridLinesVisibility="All" 
+                          BorderThickness="1"
+                          Margin="0,20" 
+                          MaxHeight="300"
+                          x:DataType="models:Make_an_appointment">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Пациент" Binding="{Binding Patient}"/>
+                        <DataGridTextColumn Header="Врач" Binding="{Binding Doctor}"/>
+                        <DataGridTextColumn Header="Дата и время приема" Binding="{Binding Date_and_time_of_reception}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="zapis" Content="Добавить запись" Margin="10,290,0,0" Click="Zapis_OnClick"/>
+                <Button x:Name="obnovlenie" Content="Обновить" Margin="10,360,0,0" Click="Obnovlenie_OnClick"/>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+                    <DatePicker x:Name="StartDate"  />
+                    <DatePicker x:Name="EndDate" />
+                    <Button x:Name= "bt_chet" Content="Подсчитать" Click="Bt_chet_OnClick" HorizontalAlignment="Center" />
+                    <TextBox x:Name="chiclo_patientov_box" Watermark="Число пациентов за период" VerticalAlignment="Bottom" HorizontalAlignment="Left"   Foreground="White"   FontSize="20" MaxWidth="300"  />
+                </StackPanel>
+            </Panel>
+        </TabItem>
+        <TabItem Header="Пациент мед карта" FontSize="17">
+            <Panel >
+                <DataGrid x:Name = "GroupsUpdatePatientMedicalCardGrid"
+                          AutoGenerateColumns="False"        
+                          IsReadOnly="True"
+                          GridLinesVisibility="All" 
+                          BorderThickness="1"
+                          Margin="0,20" 
+                          MaxHeight="300"
+                          x:DataType="models:Patient_medical_card">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Отчество" Binding="{Binding FatherName}"/>
+                        <DataGridTextColumn Header="Возраст" Binding="{Binding Age}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Panel>
+        </TabItem>
+       
+        <TabItem Header="Доктор" FontSize="17">
+            <Panel>
+                <DataGrid x:Name = "GroupsDoctorGrid"
+                          AutoGenerateColumns="False"        
+                          IsReadOnly="True"
+                          GridLinesVisibility="All" 
+                          BorderThickness="1"
+                          Margin="0,20" 
+                          MaxHeight="300"
+                          x:DataType="models:Doctor">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName_}"/>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding Name_}"/>
+                        <DataGridTextColumn Header="Отчество" Binding="{Binding FatherName_}"/>
+                        <DataGridTextColumn Header="Номер кабинета" Binding="{Binding Room_number}"/>
+                    </DataGrid.Columns>
+                </DataGrid> 
+            </Panel>
+        </TabItem>
+        <TabItem Header="Болезни" FontSize="17">
+            <Panel>
+                    <DataGrid x:Name = "GroupsPatientDiseasesGrid"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              GridLinesVisibility="All"
+                              BorderThickness="1"
+                              Margin="0,20"
+                              MaxHeight="300"
+                              x:DataType="models:Patient_diseases">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Пациент" Binding="{Binding PatientId}"/>
+                            <DataGridTextColumn Header="Диагноз" Binding="{Binding DiseasesId}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+            </Panel>
+        </TabItem>
+        <TabItem Header="Информация о болезнях" FontSize="17">
+            <Panel>
+                <DataGrid x:Name = "GroupsInformationAboutDiseasesGrid"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          GridLinesVisibility="All"
+                          BorderThickness="1"
+                          Margin="0,20"
+                          MaxHeight="300"
+                          x:DataType="models:Information_about_diseases">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Симптомы" Binding="{Binding Symptoms}"/>
+                        <DataGridTextColumn Header="Диагноз" Binding="{Binding Diagnosis}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Panel>
+        </TabItem>
+    </TabControl>
+</Window>
